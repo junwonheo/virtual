@@ -1,3 +1,369 @@
 <?php
-$div = isset($_GET['div'])
+$div = isset($_GET['div'])?$_GET['div']:'';
+
+if ($div === ''){
+    echo '';
+}
+
+
 ?>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Casual MMORPG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./utils/main.css">
+    <link rel="stylesheet" href="./utils/common.js">
+    <style>
+        /* 검색창에서 플레이스 홀더 글자 설정 */
+        input::placeholder {
+            font-size: 12px; /* placeholder 글자 크기 */
+            color: grey; /* placeholder 글자 색상 (선택 사항) */
+        }
+        .form-control {
+            width: 100%;
+            max-width: 700px;
+        }
+        /* 중간에 있는 AI 검색창 옵션 */
+        #container{
+            width: 500px;
+            height: 50px;
+            position: relative;
+            display : flex;
+            margin: auto;
+        }
+        #container input{
+            width: 150%;
+            border-radius: 25px;
+            padding: 20px;
+        }
+        #container button{
+            position : absolute;
+            top: 5px;
+            bottom: 5px;
+            right: 5px;
+            border: none;
+            background-color:transparent
+        }
+        /* 중간에 있는 AI 검색창 옵션 */
+
+        /* 제일 상단에 있는 검색창 옵션 */
+        #container2{
+            width: 500px;
+            height: 30px;
+            position: relative;
+            display : flex;
+            margin: auto;
+        }
+        #mainsearch{
+            width: 100%;
+            border-radius: 10px;
+            padding: 20px;
+            
+        }
+        #container2 button{
+            position : absolute;
+            top: 5px;
+            bottom: 5px;
+            right: 5px;
+            border: none;
+            background-color:transparent
+        }
+        /* 제일 상단에 있는 검색창 옵션 */
+
+        #lecture-img {
+            display: flex;
+            flex-wrap: wrap; /* 여러 줄로 감싸기 위해 추가 */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .lecture-item {
+            margin: 20px;
+            text-decoration: none; /* 링크의 밑줄 제거 */
+            color: #333; /* 링크 색상 설정 */
+            
+        }
+
+        .lecture-item img {
+            width: 50px;
+            margin-top: 50px;
+        }
+
+        .lecture-item span {
+            display: block;
+        }
+        .lecture-item a{
+            text-decoration: none; /* 밑줄 제거 */
+            color: inherit; /* 기본 색상 상속 */
+        }
+
+        /* 내가좋아하는 강의 목록을 나열하기 위한 CSS */
+        .lecture-box {
+            width: 30%;
+            height: 150px;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        .container-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .btnbtn {
+            width: 100%;
+        }
+        .blinking-text {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: rainbow 3s infinite linear, blinking 1s infinite alternate;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #111;
+            color: #fff;
+            padding: 20px;
+        }
+        .header img {
+            width: 300px;
+            height: auto;
+        }
+        .breadcrumb {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .rating img {
+            width: 20px;
+            margin-right: 5px;
+        }
+        .rating span {
+            font-size: 14px;
+        }
+        .instructor, .tags {
+            margin-top: 10px;
+        }
+        .tags span {
+            background-color: #444;
+            color: #fff;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .content img {
+            width: 100%;
+            margin: 20px 0;
+        }
+        .section {
+            margin-top: 40px;
+        }
+        .sidebar {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .footer {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div style="width:80%; margin: auto; margin-top:20px">
+        <!-- 부트스트랩 navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+            <div class="container">
+                <a class="navbar-brand" href="./index.php">CodeLearn</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <strong>강의</strong>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">정보 보안</a></li>
+                                <li><a class="dropdown-item" href="#">게임 개발</a></li>
+                                <li><a class="dropdown-item" href="#">데이터베이스</a></li>
+                                <li><a class="dropdown-item" href="#">클라우드</a></li>
+                                <li><a class="dropdown-item" href="#">네트워크</a></li>
+                                <li><a class="dropdown-item" href="#">암호학</a></li>
+                                <li><a class="dropdown-item" href="#">프로그래밍</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <strong>커뮤니티</strong>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">질문 & 답변</a></li>
+                                <li><a class="dropdown-item" href="#">수강평</a></li>
+                                <li><a class="dropdown-item" href="#">고민있어요</a></li>
+                                <li><a class="dropdown-item" href="#">스터디</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./product.php"><strong>로드맵</strong></a>
+                        </li>
+                        <form class="d-flex" role="search" id="container" style="width:350px" action="./search/index.php">
+                            <input name="keyword" class="form-control me-2" type="search" placeholder="나의 진짜 성장을 도와줄 실무 강의를 찾아보세요" aria-label="Search" style="border-radius:10px; ">
+                            <button type="submit">🔍</button>
+                        </form>
+                            <?php
+                                if(!isset($_SESSION['login'])){
+
+                            ?>
+                            <li class="nav-item" style="flex:right">
+                                <a class="nav-link" href="./login/user_login.php"><strong>로그인</strong></a>
+                            </li>
+                            <?php
+                                }else{
+
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./login/logout.php"><strong>로그아웃</strong></a>
+                            </li>
+                        <?php
+                            }
+                        ?>
+                        <?php 
+                            if(isset($_SESSION['id'])){
+                                if($_SESSION['id'] == 'CATCHMEIFYOUCAN'){
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./mypage.php">관리자님</a>
+                        </li>
+                        <?php
+                                }else{
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./mypage.php"><?=$_SESSION['id']?>님</a>
+                        </li>
+                        <?php
+                                }
+                            }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- 부트스트랩 navbar -->   
+        <div class="header">
+        <div class="text">
+            <div class="breadcrumb">
+                <span>게임 개발</span> / <span>게임 프로그래밍</span>
+            </div>
+            <h1>[Rookiss 컨셉에 출시까지] 유니티 캐주얼 모바일 MMORPG (M2)</h1>
+            <div class="rating">
+                <img src="star.png" alt="star">
+                <span>(5.0) 수강평 2개 수강생 168명</span>
+            </div>
+            <div class="instructor">
+                <span>👤 Rookiss 👑</span>
+            </div>
+            <div class="tags">
+                <span>#Unity</span>
+                <span>#MMORPG</span>
+                <span>#C#</span>
+                <span>#asp.net-web-api</span>
+                <span>#MySQL</span>
+            </div>
+        </div>
+        <img src="static/img/123.png" alt="Unity Casual MMORPG">
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h2>강의소개</h2>
+            <p>Unity를 사용하여 MMORPG를 개발하는 방법을 배우는 강의입니다...</p>
+            <img src="lecture-screenshot1.png" alt="Lecture Screenshot 1">
+            <img src="lecture-screenshot2.png" alt="Lecture Screenshot 2">
+            <img src="lecture-screenshot3.png" alt="Lecture Screenshot 3">
+        </div>
+
+        <div class="section">
+            <h2>사용하는 기술</h2>
+            <ul>
+                <li>Unity</li>
+                <li>C#</li>
+                <li>ASP.NET Web API</li>
+                <li>MySQL</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>강의내용</h2>
+            <p>이 강의는 다음과 같은 내용을 다룹니다...</p>
+        </div>
+
+        <div class="section">
+            <h2>강의 Q&A</h2>
+            <p>강의에 대한 질문과 답변을 확인할 수 있습니다...</p>
+        </div>
+
+        <div class="sidebar">
+            <h3>강의 정보</h3>
+            <p>강의명: Unity Casual MMORPG</p>
+            <p>강사: Rookiss</p>
+            <p>수강생: 168명</p>
+        </div>
+
+        <div class="section">
+            <h2>유사 강의 추천</h2>
+            <div class="recommended-courses">
+                <img src="course1-thumbnail.png" alt="Course 1">
+                <img src="course2-thumbnail.png" alt="Course 2">
+                <img src="course3-thumbnail.png" alt="Course 3">
+                <img src="course4-thumbnail.png" alt="Course 4">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Inflearn. All rights reserved.</p>
+    </div>
+</body>
+</html>

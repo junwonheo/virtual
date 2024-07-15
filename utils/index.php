@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./utils/main.css">
     <link rel="stylesheet" href="./utils/common.js">
+    <link rel="stylesheet" href="../static/css">
 </head>
 <body>
     <div style="width:80%; margin: auto; margin-top:20px">
