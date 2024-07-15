@@ -341,7 +341,8 @@
                 <a href="./lecture?div=data">
                     <img src="./images/test4.jpg" alt="데이터" style="width:200px; margin:20px;">
                     <span><strong>영상편집의 정점, 캠컷</strong></span>
-                </a>
+                    </a>
+            </div>
         </div>
         <!-- 얼리버드 할인중인 신규 강의 목록 -->
          
