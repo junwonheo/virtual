@@ -24,5 +24,5 @@ if ($result->num_rows > 0) {
 
 $div_lecture_png = $div . "_lecture.png";
 
-include $div . '.html';
+include '1.html';
 ?>
