@@ -1,7 +1,7 @@
 <?php
     session_start();
     include "./utils/common.php";
-    $query = "SELECT title, writer,idx,password FROM board limit 0, 5";
+    $query = "SELECT title, writer,idx FROM board limit 0, 5";
     $result = $db_conn->query($query);
 
     $lectures = array(

@@ -289,7 +289,7 @@
                 <span>게임 개발</span> / <span>게임 프로그래밍</span>
             </div>
             <!-- 강의 제목 -->
-            <h1><img src = "<?= $rows[$subjects['game'][$i]]['img'] ?>"></h1>
+            <h1><?= $title ?></h1>
             <div class="rating">
                 <img src="../images/star.png" alt="star">
                 <!-- 별점, 수강평, 수강생 -->
@@ -309,7 +309,7 @@
             </div>
         </div>
         <!-- 강의 썸네일 -->
-        <img src="<?= $rows[$subjects['game'][$i]]['img'] ?>" alt="Unity Casual MMORPG">
+        <img src="../images/<?= $div ?>.png" alt="Unity Casual MMORPG">
     </div>
 
     <div class="container">
@@ -353,16 +353,6 @@
             <p>수강생: 168명</p>
         </div>
 
-        <div class="section">
-            <!-- 유사 강의 추천 -->
-            <h2>유사 강의 추천</h2>
-            <div class="recommended-courses">
-                <img src="course1-thumbnail.png" alt="Course 1">
-                <img src="course2-thumbnail.png" alt="Course 2">
-                <img src="course3-thumbnail.png" alt="Course 3">
-                <img src="course4-thumbnail.png" alt="Course 4">
-            </div>
-        </div>
     </div>
 
     <div class="footer">
