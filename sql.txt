@@ -13,15 +13,6 @@ CREATE TABLE users (
     lecture VARCHAR(255)
 );
 
-CREATE TABLE board (
-    idx INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    writer VARCHAR(50) NOT NULL,
-    content TEXT NOT NULL,
-    regdate DATETIME NOT NULL,
-    filename VARCHAR(255),
-);
-
 CREATE TABLE review (
     idx INT(11) AUTO_INCREMENT PRIMARY KEY,
     content TEXT,
